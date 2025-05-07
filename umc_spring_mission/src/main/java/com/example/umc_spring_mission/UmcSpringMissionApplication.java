@@ -1,6 +1,9 @@
 package com.example.umc_spring_mission;
 
+import com.example.umc_spring_mission.domain.User;
+import com.example.umc_spring_mission.domain.UserNeighborhood;
 import com.example.umc_spring_mission.service.UserInfoService.UserInfoQueryService;
+import com.example.umc_spring_mission.service.UserNeighborhoodService.UserNeighborhoodQueryService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.util.Optional;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -30,15 +34,46 @@ public class UmcSpringMissionApplication {
         };
     }*/
 
+    /*
     @Bean
     public CommandLineRunner run(ApplicationContext ctx) {
         return args -> {
             UserInfoQueryService userInfoQueryService = ctx.getBean(UserInfoQueryService.class);
 
-            long userId = 1;
-            userInfoQueryService.findUserInfo(userId).ifPresent(
-                    user -> System.out.println("OK")
-            );
+            long userId = 11;
+            System.out.println("Executing findUserInfo with parameter:");
+            System.out.println("UserId: " + userId);
+
+            Optional<User> optionalUser = userInfoQueryService.findUserInfo(userId);
+            if (optionalUser.isPresent()) {
+                User user = optionalUser.get();
+                System.out.println(user);  // ← toString() 호출됨
+            } else {
+                System.out.println("User not found!");
+            }
+        };
+    }
+    */
+
+    @Bean
+    public CommandLineRunner run(ApplicationContext ctx) {
+        return args -> {
+            UserNeighborhoodQueryService userNeighborhoodQueryService = ctx.getBean(UserNeighborhoodQueryService.class);
+
+            long userId = 21;  // 예: 홍길동
+            String dongName = "강남구";  // 예: 강남구
+
+            System.out.println("Executing findUserNeighborhood with parameters:");
+            System.out.println("UserId: " + userId);
+            System.out.println("DongName: " + dongName);
+
+            Optional<UserNeighborhood> optionalUserNeighborhood = userNeighborhoodQueryService.findUserNeighborhood(userId, dongName);
+            if (optionalUserNeighborhood.isPresent()) {
+                UserNeighborhood userNeighborhood = optionalUserNeighborhood.get();
+                System.out.println(userNeighborhood);  // ← toString() 호출됨
+            } else {
+                System.out.println("UserNeighborhood not found!");
+            }
         };
     }
 }

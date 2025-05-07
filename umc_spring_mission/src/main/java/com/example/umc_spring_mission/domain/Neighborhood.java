@@ -26,7 +26,7 @@ public class Neighborhood extends BaseEntity {
     private Double longitude;
 
     @Column(nullable = false, length = 20)
-    private String Name;
+    private String name;
 
     @OneToMany(mappedBy = "neighborhood", cascade = CascadeType.ALL)
     private List<Restaurant> restaurantList = new ArrayList<>();

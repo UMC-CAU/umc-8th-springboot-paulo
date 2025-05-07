@@ -17,6 +17,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Table(name = "user")
 
 public class User extends BaseEntity {
 
@@ -78,6 +79,15 @@ public class User extends BaseEntity {
 
     @Override
     public String toString() {
-        return "User: " + name + "UserId: " + userId + "Birth: " + birth;
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", birth=" + birth +
+                ", address='" + address + '\'' +
+                ", gender=" + gender +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", createdAt=" + getCreatedAt() +   // BaseEntity에서 public getter로 꺼내야 함
+                ", updatedAt=" + getUpdatedAt() +
+                '}';
     }
 }

@@ -29,7 +29,7 @@ public class QNeighborhood extends EntityPathBase<Neighborhood> {
 
     public final NumberPath<Double> longitude = createNumber("longitude", Double.class);
 
-    public final StringPath Name = createString("Name");
+    public final StringPath name = createString("name");
 
     public final NumberPath<Long> neighborhoodId = createNumber("neighborhoodId", Long.class);
 

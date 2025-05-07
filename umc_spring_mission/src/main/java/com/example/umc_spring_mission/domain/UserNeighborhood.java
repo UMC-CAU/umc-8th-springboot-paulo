@@ -29,10 +29,21 @@ public class UserNeighborhood extends BaseEntity {
     private boolean isSuccess;
 
     @ManyToOne
-    @JoinColumn(name = "neighborhood_id")
+    @JoinColumn(name = "neighborhood_id", nullable = false)
     private Neighborhood neighborhood;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Override
+    public String toString() {
+        return "UserNeighborhood{" +
+                "userNeighborhoodId=" + userNeighborhoodId +
+                ", point=" + point +
+                ", missionNeeded=" + missionNeeded +
+                ", missionCompleted=" + missionCompleted +
+                ", isSuccess=" + isSuccess +
+                '}';
+    }
 }

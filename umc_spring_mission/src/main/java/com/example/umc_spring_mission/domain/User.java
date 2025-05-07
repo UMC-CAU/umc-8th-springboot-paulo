@@ -1,5 +1,6 @@
 package com.example.umc_spring_mission.domain;
 
+//import com.example.umc_spring_mission.domain.common.BaseEntity;
 import com.example.umc_spring_mission.domain.common.BaseEntity;
 import com.example.umc_spring_mission.domain.enums.Active;
 import com.example.umc_spring_mission.domain.enums.Gender;
@@ -74,4 +75,9 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserFood> userFoodList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "User: " + name + "UserId: " + userId + "Birth: " + birth;
+    }
 }

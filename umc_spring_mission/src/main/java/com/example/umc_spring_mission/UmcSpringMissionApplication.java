@@ -1,9 +1,13 @@
 package com.example.umc_spring_mission;
 
+import com.example.umc_spring_mission.domain.QMission;
+import com.example.umc_spring_mission.domain.QRestaurant;
 import com.example.umc_spring_mission.domain.User;
 import com.example.umc_spring_mission.domain.UserNeighborhood;
+import com.example.umc_spring_mission.service.MissionService.PosMissionService.PosMissionQueryService;
 import com.example.umc_spring_mission.service.UserInfoService.UserInfoQueryService;
 import com.example.umc_spring_mission.service.UserNeighborhoodService.UserNeighborhoodQueryService;
+import com.querydsl.core.Tuple;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -55,6 +60,7 @@ public class UmcSpringMissionApplication {
     }
     */
 
+    /*
     @Bean
     public CommandLineRunner run(ApplicationContext ctx) {
         return args -> {
@@ -76,5 +82,42 @@ public class UmcSpringMissionApplication {
             }
         };
     }
+    */
+
+    @Bean
+    public CommandLineRunner run(ApplicationContext ctx) {
+        return args -> {
+            PosMissionQueryService posMissionQueryService = ctx.getBean(PosMissionQueryService.class);
+
+            long userId = 21;
+            String dongName = "강남구";
+
+            System.out.println("Executing findPosMission with parameters:");
+            System.out.println("UserId: " + userId);
+            System.out.println("DongName: " + dongName);
+
+            List<Tuple> missions = posMissionQueryService.findPosMission(userId, dongName);
+
+            if (missions.isEmpty()) {
+                System.out.println("No missions found!");
+            } else {
+                for (Tuple tuple : missions) {
+                    String restaurantName = tuple.get(QRestaurant.restaurant.name);
+                    String restaurantType = tuple.get(QRestaurant.restaurant.restaurantType);
+                    Integer remainingDuration = tuple.get(QMission.mission.remainingDuration);
+                    String missionDescription = tuple.get(QMission.mission.missionDescription);
+                    Integer rewardPoint = tuple.get(QMission.mission.rewardPoint);
+
+                    System.out.println("Restaurant Name: " + restaurantName);
+                    System.out.println("Restaurant Type: " + restaurantType);
+                    System.out.println("Remaining Duration: " + remainingDuration);
+                    System.out.println("Mission Description: " + missionDescription);
+                    System.out.println("Reward Point: " + rewardPoint);
+                    System.out.println("-------------------------");
+                }
+            }
+        };
+    }
+
 }
 

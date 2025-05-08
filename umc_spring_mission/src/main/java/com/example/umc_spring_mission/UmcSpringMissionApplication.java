@@ -84,6 +84,7 @@ public class UmcSpringMissionApplication {
     }
     */
 
+    /*
     @Bean
     public CommandLineRunner run(ApplicationContext ctx) {
         return args -> {
@@ -118,6 +119,7 @@ public class UmcSpringMissionApplication {
             }
         };
     }
+    */
 
 }
 

@@ -1,5 +1,7 @@
 package com.example.umc_spring_mission.apiPayload;
 
+import com.example.umc_spring_mission.apiPayload.code.BaseCode;
+import com.example.umc_spring_mission.apiPayload.code.status.SuccessStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -20,7 +22,7 @@ public class ApiResponse <T>{
 
     // 성공한 경우 응답 생성
 
-    /*
+
     public static <T> ApiResponse<T> onSuccess(T result){
         return new ApiResponse<>(true, SuccessStatus._OK.getCode() , SuccessStatus._OK.getMessage(), result);
     }
@@ -28,7 +30,7 @@ public class ApiResponse <T>{
     public static <T> ApiResponse<T> of(BaseCode code, T result){
             return new ApiResponse<>(true, code.getReasonHttpStatus().getCode() , code.getReasonHttpStatus().getMessage(), result);
     }
-    */
+
 
     // 실패한 경우 응답 생성
     public static <T> ApiResponse<T> onFailure(String code, String message, T data){

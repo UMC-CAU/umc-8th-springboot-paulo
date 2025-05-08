@@ -1,0 +1,12 @@
+package com.example.umc_spring_mission.converter;
+
+import com.example.umc_spring_mission.web.dto.TempResponse;
+
+public class TempConverter {
+
+    public static TempResponse.TempTestDTO toTempTestDTO(){
+        return TempResponse.TempTestDTO.builder()
+                .testString("This is Test!")
+                .build();
+    }
+}

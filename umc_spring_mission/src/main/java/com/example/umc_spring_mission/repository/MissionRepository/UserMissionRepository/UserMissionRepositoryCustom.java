@@ -2,9 +2,10 @@ package com.example.umc_spring_mission.repository.MissionRepository.UserMissionR
 
 import com.example.umc_spring_mission.domain.Mission;
 import com.example.umc_spring_mission.domain.UserMission;
+import com.querydsl.core.Tuple;
 
 import java.util.List;
 
 public interface UserMissionRepositoryCustom {
-    List<Mission> findMissionsForUser(Long userId, boolean isCompleted);
+    List<Tuple> findMissionsForUser(Long userId, Boolean complete);
 }

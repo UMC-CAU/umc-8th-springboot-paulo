@@ -1,5 +1,6 @@
 package com.example.umc_spring_mission.converter;
 
+import com.example.umc_spring_mission.domain.Neighborhood;
 import com.example.umc_spring_mission.domain.User;
 import com.example.umc_spring_mission.web.dto.User.UserRequestDTO;
 import com.example.umc_spring_mission.web.dto.User.UserResponseDTO;
@@ -16,7 +17,7 @@ public class UserConverter {
                 .build();
     }
 
-    public static User toMember(UserRequestDTO.JoinDto request){
+    public static User toMember(UserRequestDTO.JoinDto request) {
         return User.builder()
                 .name(request.getName())
                 .phoneNum(request.getPhoneNum())

@@ -35,11 +35,7 @@ public class QUser extends EntityPathBase<User> {
 
     public final ListPath<Inquiry, QInquiry> inquiryList = this.<Inquiry, QInquiry>createList("inquiryList", Inquiry.class, QInquiry.class, PathInits.DIRECT2);
 
-    public final StringPath loginId = createString("loginId");
-
     public final StringPath name = createString("name");
-
-    public final StringPath password = createString("password");
 
     public final StringPath phoneNum = createString("phoneNum");
 

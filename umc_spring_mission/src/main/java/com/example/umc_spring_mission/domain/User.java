@@ -6,6 +6,8 @@ import com.example.umc_spring_mission.domain.enums.Active;
 import com.example.umc_spring_mission.domain.enums.Gender;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,6 +17,8 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
+//@DynamicUpdate
+//@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "user")
@@ -24,12 +28,6 @@ public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-
-    @Column(nullable = false, length = 20)
-    private String loginId;
-
-    @Column(nullable = false, length = 20)
-    private String password;
 
     @Column(nullable = false, length = 10)
     private String name;

@@ -29,7 +29,11 @@ public enum ErrorStatus implements BaseErrorCode {
     USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "USER4001", "유저가 없음"),
 
     //Restaurant
-    RESTAURANT_NOT_FOUND(HttpStatus.BAD_REQUEST, "RESTAURANT4001", "식당이 없음");
+    RESTAURANT_NOT_FOUND(HttpStatus.BAD_REQUEST, "RESTAURANT4001", "식당이 없음"),
+
+    //Mission
+    MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION4001", "미션이 없음"),
+    MISSION_ALREADY_CHALLENGING(HttpStatus.BAD_REQUEST, "MISSION4002", "미션이 이미 진행중임");
 
     private final HttpStatus httpStatus;
     private final String code;

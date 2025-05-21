@@ -10,10 +10,10 @@ public class MissionRequestDTO {
 
     @Getter
     public static class AddMissionRequestDTO {
-        @NotBlank
+        @NotNull
         @Min(value = 24)
         int remainingDuration;
-        @NotBlank
+        @NotNull
         @Min(value = 100)
         int rewardPoints;
         @NotBlank

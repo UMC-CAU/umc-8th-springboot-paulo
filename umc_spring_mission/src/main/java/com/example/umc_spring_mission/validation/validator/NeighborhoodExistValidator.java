@@ -26,7 +26,8 @@ public class NeighborhoodExistValidator implements ConstraintValidator<ExistNeig
 
         if(!isValid) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.NEIGHBORHOOD_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate
+                    (ErrorStatus.NEIGHBORHOOD_NOT_FOUND.toString()).addConstraintViolation();
         }
 
         return isValid;

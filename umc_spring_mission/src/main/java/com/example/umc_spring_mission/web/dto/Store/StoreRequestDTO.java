@@ -5,7 +5,9 @@ import com.example.umc_spring_mission.validation.annotation.ExistNeighborhood;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import org.springframework.validation.annotation.Validated;
 
+@Validated
 public class StoreRequestDTO {
 
     @Getter

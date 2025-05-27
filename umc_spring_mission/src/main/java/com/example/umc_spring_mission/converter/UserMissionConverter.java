@@ -5,6 +5,11 @@ import com.example.umc_spring_mission.domain.User;
 import com.example.umc_spring_mission.domain.UserMission;
 import com.example.umc_spring_mission.web.dto.UserMission.UserMissionRequestDTO;
 import com.example.umc_spring_mission.web.dto.UserMission.UserMissionResponseDTO;
+import org.springframework.data.domain.Page;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserMissionConverter {
 
@@ -21,6 +26,29 @@ public class UserMissionConverter {
         return UserMission.builder()
                 .user(user)
                 .mission(mission)
+                .build();
+    }
+
+    public static UserMissionResponseDTO.UserMissionPreViewDTO userMissionPreViewDTO(UserMission userMission){
+        return UserMissionResponseDTO.UserMissionPreViewDTO.builder()
+                .userMissionId(userMission.getUserMissionId())
+                .missionDescription(userMission.getMission().getMissionDescription())
+                .remainingDuration(userMission.getMission().getRemainingDuration())
+                .restaurantName(userMission.getMission().getRestaurant().getName())
+                .rewardPoints(userMission.getMission().getRewardPoint())
+                .build();
+    }
+
+    public static UserMissionResponseDTO.UserMissionPreViewListDTO userMissionPreViewListDTO(Page<UserMission> userMissionList){
+        List<UserMissionResponseDTO.UserMissionPreViewDTO> userMissionPreViewDTOList = userMissionList.stream()
+                .map(UserMissionConverter::userMissionPreViewDTO).collect(Collectors.toList());
+        return UserMissionResponseDTO.UserMissionPreViewListDTO.builder()
+                .isFirst(userMissionList.isFirst())
+                .isLast(userMissionList.isLast())
+                .totalPage(userMissionList.getTotalPages())
+                .totalElements(userMissionList.getTotalElements())
+                .listSize(userMissionList.getNumberOfElements())
+                .userMissionList(userMissionPreViewDTOList)
                 .build();
     }
 }

@@ -29,7 +29,7 @@ public class UserRestController {
         return ApiResponse.onSuccess(UserConverter.toJoinResultDTO(user));
     }
 
-    @PostMapping("/reviews")
+    @GetMapping("/reviews")
     public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getUserReviewList(@RequestParam(name = "page") Integer page){
 
         Page<Review> reviewList = reviewQueryService.getReviewList(page);

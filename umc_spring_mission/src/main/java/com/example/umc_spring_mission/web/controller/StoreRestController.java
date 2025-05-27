@@ -12,6 +12,7 @@ import com.example.umc_spring_mission.domain.Review;
 import com.example.umc_spring_mission.domain.User;
 import com.example.umc_spring_mission.repository.RestaurantRepository.RestaurantRepository;
 import com.example.umc_spring_mission.service.MissionService.MissionCommandService;
+import com.example.umc_spring_mission.service.MissionService.MissionQueryService;
 import com.example.umc_spring_mission.service.ReviewService.ReviewCommandService;
 import com.example.umc_spring_mission.service.ReviewService.ReviewQueryService;
 import com.example.umc_spring_mission.service.StoreService.StoreCommandService;
@@ -45,6 +46,7 @@ public class StoreRestController {
     private final MissionCommandService missionCommandService;
 
     private final ReviewQueryService reviewQueryService;
+    private final MissionQueryService missionQueryService;
 
 
     @PostMapping ("/")
@@ -81,5 +83,11 @@ public class StoreRestController {
     public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistRestaurant @Valid Long restaurantId, @RequestParam(name = "page") Integer page){
         Page<Review> reviewList = reviewQueryService.getReviewList(restaurantId, page);
         return ApiResponse.onSuccess(ReviewConverter.reviewPreViewListDTO(reviewList));
+    }
+
+    @GetMapping("/{restaurantId}/missions")
+    public ApiResponse<MissionResponseDTO.MissionPreViewListDTO> getMissionList(@ExistRestaurant @Valid Long restaurantId, @RequestParam(name = "page") Integer page){
+        Page<Mission> missionList = missionQueryService.getMissionList(restaurantId, page);
+        return ApiResponse.onSuccess(MissionConverter.missionPreViewListDTO(missionList));
     }
 }

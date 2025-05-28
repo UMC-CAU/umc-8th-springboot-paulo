@@ -39,8 +39,10 @@ public class MissionRestController {
         return ApiResponse.onSuccess(UserMissionConverter.userMissionPreViewListDTO(userMissionList));
     }
 
-    @PatchMapping("/{missionId}/userMissions")
-    public ApiResponse<UserMissionResponseDTO.UserMissionPatchResponseDTO> patchUMissionSuccess(@PathVariable Long missionId) {
-        return null;
+    @PatchMapping("/userMissions/{userMissionId}")
+    public ApiResponse<UserMissionResponseDTO.UserMissionPatchResponseDTO> patchUMissionSuccess(@PathVariable Long userMissionId) {
+
+        UserMission userMission = userMissionCommandService.successMission(userMissionId);
+        return ApiResponse.onSuccess(UserMissionConverter.userMissionPatchResponseDTO(userMission));
     }
 }

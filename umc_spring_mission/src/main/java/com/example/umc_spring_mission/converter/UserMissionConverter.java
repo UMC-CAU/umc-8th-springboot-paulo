@@ -51,4 +51,15 @@ public class UserMissionConverter {
                 .userMissionList(userMissionPreViewDTOList)
                 .build();
     }
+
+    public static UserMissionResponseDTO.UserMissionPatchResponseDTO userMissionPatchResponseDTO(UserMission userMission){
+        return UserMissionResponseDTO.UserMissionPatchResponseDTO.builder()
+                .userMissionId(userMission.getUserMissionId())
+                .missionDescription(userMission.getMission().getMissionDescription())
+                .remainingDuration(userMission.getMission().getRemainingDuration())
+                .restaurantName(userMission.getMission().getRestaurant().getName())
+                .rewardPoints(userMission.getMission().getRewardPoint())
+                .isSuccess(userMission.isSuccess())
+                .build();
+    }
 }

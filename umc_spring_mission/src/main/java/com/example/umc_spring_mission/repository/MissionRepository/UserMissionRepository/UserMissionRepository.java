@@ -3,9 +3,11 @@ package com.example.umc_spring_mission.repository.MissionRepository.UserMissionR
 import com.example.umc_spring_mission.domain.Mission;
 import com.example.umc_spring_mission.domain.User;
 import com.example.umc_spring_mission.domain.UserMission;
+import org.hibernate.sql.Update;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

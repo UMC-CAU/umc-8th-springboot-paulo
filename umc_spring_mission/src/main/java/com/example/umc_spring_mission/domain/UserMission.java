@@ -25,4 +25,8 @@ public class UserMission extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
 }

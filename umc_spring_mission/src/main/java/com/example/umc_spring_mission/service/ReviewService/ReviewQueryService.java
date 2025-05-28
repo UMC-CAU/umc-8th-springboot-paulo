@@ -6,4 +6,6 @@ import org.springframework.data.domain.Page;
 public interface ReviewQueryService {
 
     Page<Review> getReviewList(Long storeId, Integer page);
+
+    Page<Review> getReviewList(Integer page);
 }

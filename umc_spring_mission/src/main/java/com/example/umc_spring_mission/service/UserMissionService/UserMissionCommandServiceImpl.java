@@ -9,9 +9,11 @@ import com.example.umc_spring_mission.repository.MissionRepository.MissionReposi
 import com.example.umc_spring_mission.repository.MissionRepository.UserMissionRepository.UserMissionRepository;
 import com.example.umc_spring_mission.repository.UserRepository.UserRepository;
 import com.example.umc_spring_mission.web.dto.UserMission.UserMissionRequestDTO;
+import com.example.umc_spring_mission.web.dto.UserMission.UserMissionResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 @RequiredArgsConstructor
@@ -33,5 +35,11 @@ public class UserMissionCommandServiceImpl implements UserMissionCommandService 
         return userMissionRepository.save(newUserMission);
     }
 
-
+    @Override
+    @Transactional
+    public UserMission successMission(Long userMissionId) {
+        UserMission userMission = userMissionRepository.findById(userMissionId).get();
+        userMission.setSuccess(true);
+        return userMissionRepository.save(userMission);
+    }
 }
